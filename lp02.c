@@ -1,72 +1,55 @@
 #include<stdio.h>
+#include<stdlib.h>
 #include<time.h>
-int n,a[50][50],i,j,count=0,reach[50],pos[50];
-
-read_matrix()
+void dfs(int n, int a[10][10], int u, int t[10][10], int visited[10])
 {
-	printf("\n Enter the adjacency matrix (Enter 0/1)\n");
-	for(i=1;i<=n;i++)
-	for(j=1;j<=n;j++)
-	if(i!=j)
-	{
-		printf("(%d,%d):",i,j);
-		scanf("%d",&a[i][j]);
-	}
-}
-
-dfs(int v)
-{
-	int u;
-	reach[++count]=v;
-	u=adjacent(v);
-	while(u)
-	{
-		if(checkreach(u)==0) dfs(u);
-		u=adjacent(v);
-	}
-}
-adjacent(int i)
-{
-	for(j=pos[i]+1;j<=n;j++)
-	if(a[i][j]==1)
-	{
-		pos[i]=j;
-		return j;
-	}
-	pos[i]=n+1;
-	return 0;
-}
-checkreach(int u)
-{
-	for(i=1;i<=count;i++)
-	if(reach[i]==u)
-		return 1;
-	return 0;
+    int v;
+    static int k=0;
+    visited[u]=1;
+    for(v=0;v<n;v++)
+    {
+        if(a[u][v]==1 && visited[v]==0)
+        {
+         t[k][0]=u;
+         t[k][1]=v;
+         k++;
+         dfs(n,a,v, t, visited);
+        }
+    }
 }
 int main()
 {
-        int v;
+        int n,i,j,u,a[10][10],visited[10],t[10][10];
         double clk;
         clock_t starttime,endtime;
         printf("\n\t\t\t DEPTH FIRST SEARCH \n");
-        printf("\n Enter number of Lands to be surveyed:");
+        printf("\n Enter number of vertices:");
         scanf("%d",&n);
-        for(i=1;i<=n;i++)
+        printf("\n Enter the adjacency matrix (Enter 0/1)\n");
+	    for(i=0;i<n;i++)
+	     for(j=0;j<n;j++)
+	    	scanf("%d",&a[i][j]);
+	   	printf("\n Enter the source vertex:");
+        scanf("%d",&u);
+    	for(i=0;i<n;i++)
        {	
-          	pos[i]=0;
+          	visited[i]=0;
        }
-        read_matrix();
-        printf("\n Enter the starting Land number:");
-        scanf("%d",&v);
-        starttime=clock();
-        dfs(v);
-        endtime=clock();
-        clk=(double)(endtime-starttime)/CLOCKS_PER_SEC;
-        printf("\n Vertices reached from the given vertex are...\n");
-       for(i=1;i<=count;i++)
-       {
-	printf("%d\t",reach[i]);
-       }
-        printf("\nThe run time is %f\n",clk);
+       dfs(n,a,u,t,visited);
+       for(i=0;i<n;i++)  
+            if(visited[i]==1)
+                 printf("%d is reachable",i);
+            else
+                printf("%d is not reachable",i);
+                
+                printf("DFS traversal : Edges visited\n");
+                for(i=0;i<n-1;i++)
+                printf("%d %d\n",t[i][0],t[i][1]);
+                starttime=clock();
+                endtime=clock();
+                clk=(double)(endtime-starttime)/CLOCKS_PER_SEC;
+                printf("the run time is %f",clk);
+                
+       
 }
 
