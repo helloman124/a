@@ -27,7 +27,7 @@ int main()
         scanf("%d",&n);
 
         for(i=0;i<n;i++)
-	     	a[i]=rand()%1000;
+	     	a[i]=rand()%100;
 	     
   	  starttime=clock(); 
  	  insertionsort(a,n);
