@@ -1,5 +1,6 @@
 #include<stdio.h>
 #include<time.h>
+#include<stdlib.h>
 
 int bin_search(int a[],int n,int key)
 {
