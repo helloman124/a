@@ -41,7 +41,7 @@ int partition(int a[],int low,int high)
 	}
 }
 
-main()
+void main()
 {
 	int i, n,a[200000];
       double clk;
