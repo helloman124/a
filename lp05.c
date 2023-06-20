@@ -1,5 +1,6 @@
 #include<stdio.h>
 #include<time.h>
+#include<stdlib.h>
 int a[500000];
 void merge(int,int,int);
 void merge_sort(int low,int high)
