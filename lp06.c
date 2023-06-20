@@ -1,6 +1,7 @@
 /* Quicksort PROGRAM */
 #include<stdio.h>
 #include<time.h>
+#include<stdlib.h>
 int partition(int a[],int low,int high)
 {
 	int i,j,temp,pivot;
