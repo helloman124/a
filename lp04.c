@@ -1,4 +1,5 @@
 #include<stdio.h>
+#include<stdlib.h>
 #include<time.h>
 void insertionsort(int a[],int n)
 	{
@@ -15,8 +16,7 @@ void insertionsort(int a[],int n)
 		a[j+1]=v;
 	}
 	}
-
-int main()
+void main()
 {
         int n,i,a[100],key,f;
         double clk;
