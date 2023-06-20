@@ -1,32 +1,6 @@
 #include<stdio.h>
 #include<time.h>
 int n,a[50][50],i,j,count=0,reach[50],pos[50];
-int main()
-{
-        int v;
-        double clk;
-        clock_t starttime,endtime;
-        printf("\n\t\t\t DEPTH FIRST SEARCH \n");
-        printf("\n Enter number of Lands to be surveyed:");
-        scanf("%d",&n);
-        for(i=1;i<=n;i++)
-       {	
-          	pos[i]=0;
-       }
-        read_matrix();
-        printf("\n Enter the starting Land number:");
-        scanf("%d",&v);
-        starttime=clock();
-        dfs(v);
-        endtime=clock();
-        clk=(double)(endtime-starttime)/CLOCKS_PER_SEC;
-        printf("\n Vertices reached from the given vertex are...\n");
-       for(i=1;i<=count;i++)
-       {
-	printf("%d\t",reach[i]);
-       }
-        printf("\nThe run time is %f\n",clk);
-}
 
 read_matrix()
 {
@@ -69,3 +43,30 @@ checkreach(int u)
 		return 1;
 	return 0;
 }
+int main()
+{
+        int v;
+        double clk;
+        clock_t starttime,endtime;
+        printf("\n\t\t\t DEPTH FIRST SEARCH \n");
+        printf("\n Enter number of Lands to be surveyed:");
+        scanf("%d",&n);
+        for(i=1;i<=n;i++)
+       {	
+          	pos[i]=0;
+       }
+        read_matrix();
+        printf("\n Enter the starting Land number:");
+        scanf("%d",&v);
+        starttime=clock();
+        dfs(v);
+        endtime=clock();
+        clk=(double)(endtime-starttime)/CLOCKS_PER_SEC;
+        printf("\n Vertices reached from the given vertex are...\n");
+       for(i=1;i<=count;i++)
+       {
+	printf("%d\t",reach[i]);
+       }
+        printf("\nThe run time is %f\n",clk);
+}
+
