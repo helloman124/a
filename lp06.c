@@ -29,8 +29,7 @@ int partition(int a[],int low,int high)
 		}
 	}
 }
-
- quick_sort(int a[],int low,int high)
+void quick_sort(int a[],int low,int high)
 {
 	int j;
 	if(low<high)
