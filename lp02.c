@@ -1,62 +1,53 @@
-//binary search
 #include<stdio.h>
 #include<time.h>
 #include<stdlib.h>
-int bin(int a[],int n,int key)
+void dfs(int n, int a[10][10], int u, int t[10][10], int visited[10])
 {
-    int mid,low,high;
-    low=0;
-    high=n-1;
-    while(low<=high)
+    int v;
+    static int k=0;
+    visited[u]=1;
+    for(v=0;v<n;v++)
     {
-        mid=(low+high)/2;
-        if(key==a[mid])
-        return(mid);
-        else if(key<a[mid])
-        high=mid-1;
-        else 
-        low=mid+1;
+        if(a[u][v]==1 && visited[v]==0)
+        {
+         t[k][0]=u;
+         t[k][1]=v;
+         k++;
+         dfs(n,a,v, t, visited);
+        }
     }
-    return(-1);
 }
 int main()
 {
-    double clk;
-    clock_t starttime,endtime;
-    int n,key,a[5000],f,i,j,temp;
-    printf("enter number of elements:");
-    scanf("%d",&n);
-    for(int i=0;i<n;i++)
-    {
-        a[i]=rand()%100;
-        printf("\nthe product id are %d",a[i]);
-    }
-    for(i=0;i<n-1;i++)
-    {
-        for(j=0;j<n-1;j++)
-        {
-            if(a[j]>a[j+1])
-            {
-                temp=a[j];
-                a[j]=a[j+1];
-                a[j+1]=temp;
-            }
-        }
-    }
-    printf("\nsorted order:");
-    for(i=0;i<n;i++)
-    {
-        printf("%d\t",a[i]);
-    }
-    printf("\nenter product to search:");
-    scanf("%d",&key);
-    starttime=clock();
-    f=bin(a,n,key);
-    endtime=clock();
-    if(f==-1)
-    printf("\nproduct not found");
-    else
-    printf("\n%d is found at %d",key,f);
-    clk=(double)(endtime-starttime)/CLOCKS_PER_SEC;
-    printf("\nthe runtime is %f",clk);
+        int n,i,j,u,a[10][10],visited[10],t[10][10];
+        double clk;
+        clock_t starttime,endtime;
+        printf("\n\t\t\t DEPTH FIRST SEARCH \n");
+        printf("\n Enter number of vertices:");
+        scanf("%d",&n);
+        printf("\n Enter the adjacency matrix (Enter 0/1)\n");
+	    for(i=0;i<n;i++)
+	     for(j=0;j<n;j++)
+	    	scanf("%d",&a[i][j]);
+	   	printf("\n Enter the source vertex:");
+        scanf("%d",&u);
+    	for(i=0;i<n;i++)
+       {	
+          	visited[i]=0;
+       }
+       dfs(n,a,u,t,visited);
+       for(i=0;i<n;i++)  
+            if(visited[i]==1)
+                 printf("%d is reachable",i);
+            else
+                printf("%d is not reachable",i);
+                
+                printf("DFS traversal : Edges visited\n");
+                for(i=0;i<n-1;i++)
+                printf("%d %d\n",t[i][0],t[i][1]);
+                starttime=clock(); 
+                endtime=clock();
+                clk=(double)(endtime-starttime)/CLOCKS_PER_SEC;
+                 printf("\nThe run time is %f\n",clk);
+       
 }
