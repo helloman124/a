@@ -1,6 +1,6 @@
 #include<stdio.h>
-#include<time.h>
 #include<stdlib.h>
+#include<time.h>
 void bfs(int a[10][10],int n,int source)
 {
  	int s[10],q[10],f=0,r=-1,t,v;
