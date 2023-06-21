@@ -1,49 +1,62 @@
+//binary search
 #include<stdio.h>
-#include<stdlib.h>
 #include<time.h>
-
-int bin_search(int a[],int n,int key)
+#include<stdlib.h>
+int bin(int a[],int n,int key)
 {
-int low,mid,high;
-low=0, high=n-1;
-while(low<=high)
-{
-	mid=(low+high)/2;
-	if(key==a[mid])
-	    return(mid);
-	else if(key<a[mid])
-	    high=mid-1;
-      else
-	    low=mid+1;
-}
-return(-1);
+    int mid,low,high;
+    low=0;
+    high=n-1;
+    while(low<=high)
+    {
+        mid=(low+high)/2;
+        if(key==a[mid])
+        return(mid);
+        else if(key<a[mid])
+        high=mid-1;
+        else 
+        low=mid+1;
+    }
+    return(-1);
 }
 int main()
 {
-        int n,i,a[100],key,f;
-        double clk;
-        clock_t starttime,endtime;
-
-        printf("\n\t\t\t Binary search \n");
-        printf("\n Enter number of elements");
-        scanf("%d",&n);
-
-        for(i=0;i<n;i++)
-	     	a[i]=rand()%100;
-	 
-	  printf("Enter the key to be searched:");
-	  scanf("%d",&key); 	
-        
-  	  starttime=clock(); 
- 	  f=bin_search(a,n,key);
-     	  endtime=clock();
-                
-        if(f==-1)
-           printf("\nThe element %d is not found",key);
-        else
-           printf("The element %d is found in position %d",key,f);
-
-        clk=(double)(endtime-starttime)/CLOCKS_PER_SEC;
-        printf("\nThe run time is %f\n",clk);
- }
-  
+    double clk;
+    clock_t starttime,endtime;
+    int n,key,a[5000],f,i,j,temp;
+    printf("enter number of elements:");
+    scanf("%d",&n);
+    for(int i=0;i<n;i++)
+    {
+        a[i]=rand()%100;
+        printf("\nthe product id are %d",a[i]);
+    }
+    for(i=0;i<n-1;i++)
+    {
+        for(j=0;j<n-1;j++)
+        {
+            if(a[j]>a[j+1])
+            {
+                temp=a[j];
+                a[j]=a[j+1];
+                a[j+1]=temp;
+            }
+        }
+    }
+    printf("\nsorted order:");
+    for(i=0;i<n;i++)
+    {
+        printf("%d\t",a[i]);
+    }
+    printf("\nenter product to search:");
+    scanf("%d",&key);
+    starttime=clock();
+    f=bin(a,n,key);
+    endtime=clock();
+    if(f==-1)
+    printf("\nproduct not found");
+    else
+    printf("\n%d is found at %d",key,f);
+    clk=(double)(endtime-starttime)/CLOCKS_PER_SEC;
+    printf("\nthe runtime is %f",clk);
+}
