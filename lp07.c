@@ -1,7 +1,6 @@
 #include <stdio.h>
-#include <stdlib.h>
 #include<time.h>
-
+#include <stdlib.h>
 void heapify(int arr[], int n, int i)
 {
     int largest = i;
