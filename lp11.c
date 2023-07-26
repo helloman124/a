@@ -1,4 +1,5 @@
 #include<stdio.h>
+#include<stdlib.h>
 #include<time.h>
 // Define a structure to represent an edge in the graph
 struct edge
