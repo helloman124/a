@@ -1,4 +1,5 @@
 #include<stdio.h>
+#include<stdlib.h>
 int count,w[10],d,x[10];
 // recursive function to find the subsets whose sum of elements is equal to d
 void subset(int cs,int k,int r) // cs = current sum, k = level, r = remaining sum
