@@ -53,20 +53,3 @@ clk=(double)(endtime-starttime)/CLOCKS_PER_SEC;
 	}
    printf("\nThe run time is %f\n",clk);
 }
-
-
-/*
-Sample input and output
-Enter no of vertices : 4
-Enter the cost matrix
-0	999	3	999
-2	0	999	999
-999	7	0	1	
-6	999	999	0
-All pairs shortest path matrix is:
-0	10	3	4
-2	0	5	6
-7	7	0	1
-6	16	9	0
-The time taken is 0.989011
-*/
