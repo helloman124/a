@@ -1,46 +1,57 @@
 #include<stdio.h>
-#include<time.h>
 #include<stdlib.h>
+#include<time.h>
 
-void insertionsort(int a[],int n)
-	{
-	int i,j,v;
-	for(i=1;i<n;i++)
-	{
-		v=a[i];
-		j=i-1;
-		while(j>=0 && a[j]>v)
-		{
-			a[j+1]=a[j];
-			j=j-1;
-		}
-		a[j+1]=v;
-	}
-	}
-void main()
+void insertionSort(long long arr[], int n)
 {
-        int n,i,a[100],key,f;
-        double clk;
-        clock_t starttime,endtime;
+    int j;
+    long long key;
+    for (int i = 1; i < n; i++)
+    {
+        key = arr[i];
+        j = i - 1;
+        while (j >= 0 && arr[j] > key)
+        {
+            arr[j + 1] = arr[j];
+            j = j - 1;
+        }
+        arr[j + 1] = key;
+    }
+}
 
-        printf("\n\t\t\t Insertion sort \n");
-        printf("\n Enter number of elements");
-        scanf("%d",&n);
+int main()
+{
 
-        for(i=0;i<n;i++)
-	     	a[i]=rand()%100;
-	     
-  	  starttime=clock(); 
- 	  insertionsort(a,n);
-     	  endtime=clock();
-                
-        printf("\nThe sorted elements are:\n");
-	  for(i=0;i<n;i++)
- 		printf("%d\t",a[i]);
+    int n;
+    printf("Enter total number of phone numbers: ");
+    scanf("%d", &n);
 
-        clk=(double)(endtime-starttime)/CLOCKS_PER_SEC;
-        printf("\nThe run time is %f\n",clk);
- }
-  
+    long long *phoneNumbers = (long long *)malloc(n * sizeof(long long));
 
-	
+    // Generate random phone numbers
+    srand(time(0)); // no need to write sometimes needed
+    for (int i = 0; i < n; i++)
+    {
+        phoneNumbers[i] = rand() % 9000000000 + 1000000000;
+    }
+
+    clock_t time_taken = clock();
+
+    insertionSort(phoneNumbers, n);
+
+    time_taken = clock() - time_taken;
+
+    double runtime = (double)time_taken / CLOCKS_PER_SEC;
+
+    printf("Sorted phone numbers:\n");
+    for (int i = 0; i < n; i++)
+    {
+        printf("%lld\n", phoneNumbers[i]);
+    }
+
+    printf("Total time taken : %lf seconds\n", runtime);
+
+    free(phoneNumbers); 
+
+    return 0;
+}
